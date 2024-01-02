@@ -10,6 +10,7 @@ import SignUp from './components/SignUp/SignUp.jsx';
 import AllContacts from './components/AllContacts/AllContacts.jsx';
 import AddContacts from './components/AddContacts/AddContacts.jsx';
 import AuthProvider from './providers/AuthProvider.jsx';
+import UpdateContacts from './components/AllContacts/UpdateContacts.jsx';
 
 const router = createBrowserRouter([
 	{
@@ -35,6 +36,12 @@ const router = createBrowserRouter([
 			{
 				path: '/sign-up',
 				element: <SignUp />,
+			},
+			{
+				path: '/contacts/:id',
+				element: <UpdateContacts />,
+				loader: ({ params }) =>
+					fetch(`http://localhost:5000/contacts/${params.id}`),
 			},
 		],
 	},

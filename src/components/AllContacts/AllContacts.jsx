@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import SingleContacts from './SingleContacts';
 
 const AllContacts = () => {
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		fetch('http://localhost:5000/contacts')
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setData(data);
+			});
+	}, []);
+
 	return (
-		<div>
-			<h1>This is all contacts</h1>
+		<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-8 gap-[30px] px-3 md:px-20 py-10 md:py-20">
+			{data.map((singleData) => (
+				<SingleContacts
+					key={singleData.id}
+					singleData={singleData}
+				></SingleContacts>
+			))}
 		</div>
 	);
 };

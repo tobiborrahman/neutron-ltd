@@ -1,0 +1,110 @@
+import React, { useState } from 'react';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { GrUpdate } from 'react-icons/gr';
+import UpdateContacts from './UpdateContacts';
+
+const SingleContacts = ({ singleData }) => {
+	const { _id, name, address, email } = singleData;
+	const [isFavorited, setIsFavorited] = useState(false);
+	const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
+
+	const handleToggleFavorite = () => {
+		setIsFavorited(!isFavorited);
+	};
+
+	const handleUpdate = () => {
+		setUpdateModalOpen(true);
+	};
+
+	const handleUpdateSubmit = (_id) => {
+		fetch(`http://localhost:5000/contacts/${_id}`, {
+			method: 'PUT',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(singleData),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				setUpdateModalOpen(false);
+			})
+			.catch((error) => console.error('Error updating data:', error));
+	};
+
+	const handleDelete = (id) => {
+		console.log('delete', id);
+		fetch(`http://localhost:5000/contacts/${id}`, {
+			method: 'DELETE',
+		})
+			.then((res) => res.json())
+			.then((data) => console.log(data));
+	};
+
+	return (
+		<>
+			<section>
+				<div>
+					<div className="px-6 py-10 shadow shadow-gray-200 hover:shadow-lg dark:shadow-gray-800 dark:hover:shadow-gray-700 transition rounded-2xl bg-white dark:bg-slate-900 md:h-[460px] duration-500 text-center">
+						<div className="flex justify-center items-center">
+							<img
+								className="w-[200px] h-[200px] rounded-full"
+								src={singleData.photoUrl}
+								alt=""
+							/>
+						</div>
+						<h4 className="text-xl dark:text-white py-2 hover:text-[#F59E0B] dark:hover:text-[#F59E0B]">
+							{singleData.name}
+						</h4>
+						<p className="text-md  text-[#94A3B8]">
+							{singleData.email}
+						</p>
+						<p className="text-md py-2 text-[#94A3B8]">
+							{singleData.phone}
+						</p>
+						<p className="text-md  text-[#94A3B8]">
+							{singleData.address}
+						</p>
+
+						<div className="flex pt-4 justify-center items-center gap-8">
+							{/* <FaRegHeart
+								data-tooltip-target="tooltip-default"
+								type="button"
+								className="w-10 h-10 p-[10px] bg-amber-500 text-white rounded-full"
+							/> */}
+							<button
+								onClick={handleToggleFavorite}
+								className={`w-10 h-10 p-[10px] rounded-full ${
+									isFavorited ? 'bg-red-500' : 'bg-amber-500'
+								} text-white`}
+							>
+								{isFavorited ? <FaHeart /> : <FaRegHeart />}
+							</button>
+
+							<GrUpdate
+								onClick={handleUpdate}
+								className="w-10 h-10 p-[10px] bg-amber-500 text-white rounded-full"
+							/>
+
+							<RiDeleteBin6Line
+								onClick={() => handleDelete(_id)}
+								className="w-10 h-10 p-[10px] bg-amber-500 text-white rounded-full"
+							/>
+						</div>
+					</div>
+				</div>
+				<UpdateContacts
+					isOpen={isUpdateModalOpen}
+					onClose={() => setUpdateModalOpen(false)}
+					onUpdate={(e, updatedData) =>
+						handleUpdateSubmit(e, updatedData)
+					}
+					initialData={singleData}
+				/>
+			</section>
+		</>
+	);
+};
+
+export default SingleContacts;
