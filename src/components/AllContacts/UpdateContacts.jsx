@@ -38,7 +38,10 @@ const AddContacts = ({ singleData }) => {
 
 	return (
 		<div className="flex justify-center items-center my-32 bg-[#61707D] shadow rounded-xl pb-12 z-90">
-			<form className="w-[500px] p-10 " onSubmit={handleSubmit(onSubmit)}>
+			<form
+				className="w-full md:w-[500px] p-10"
+				onSubmit={handleSubmit(onSubmit)}
+			>
 				<h1 className="text-center text-white text-4xl font-bold pb-10">
 					Update Contact Details
 				</h1>

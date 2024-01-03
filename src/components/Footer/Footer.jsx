@@ -11,8 +11,8 @@ const Footer = () => {
 							About Us
 						</h4>
 						<p className="text-gray-400 leading-loose">
-							At ChefsWorld, we are passionate about creating
-							delicious and healthy meals that will delight your
+							At NeutronLTD, we are passionate about creating new
+							technologies and websites that will delight your
 							taste buds.
 						</p>
 					</div>

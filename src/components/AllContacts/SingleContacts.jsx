@@ -125,7 +125,7 @@ const SingleContacts = ({ singleData }) => {
 								/>
 
 								{isUpdateModalOpen && (
-									<div className="absolute top-[-900%] left-[-35%] z-50">
+									<div className="absolute top-[-800%] md:top-[-900%] left[-1200%] md:left-[-35%] z-50">
 										<div className="">
 											<UpdateContacts
 												handleUpdateSubmit={
