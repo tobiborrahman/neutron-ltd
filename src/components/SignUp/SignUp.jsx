@@ -39,7 +39,6 @@ const SignUp = () => {
 			})
 			.catch((err) => {
 				setError(err.message);
-				// console.log(err);
 			});
 	};
 

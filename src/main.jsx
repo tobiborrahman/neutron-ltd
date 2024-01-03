@@ -37,7 +37,9 @@ const router = createBrowserRouter([
 				path: '/contacts/:id',
 				element: <UpdateContacts />,
 				loader: ({ params }) =>
-					fetch(`http://localhost:5000/contacts/${params.id}`),
+					fetch(
+						`https://neutron-ltd-server.vercel.app/contacts/${params.id}`
+					),
 			},
 		],
 	},

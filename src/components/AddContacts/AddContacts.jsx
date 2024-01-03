@@ -11,7 +11,7 @@ const AddContacts = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		fetch('http://localhost:5000/contacts', {
+		fetch('https://neutron-ltd-server.vercel.app/contacts', {
 			method: 'POST',
 			headers: {
 				'content-type': 'application/json',
@@ -33,9 +33,8 @@ const AddContacts = () => {
 				}
 			});
 
-		// console.log(data);
 	};
-	// console.log(errors);
+
 
 	return (
 		<div className="flex justify-center items-center my-20">

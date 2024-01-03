@@ -10,13 +10,16 @@ const AddContacts = ({ singleData }) => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		fetch(`http://localhost:5000/contacts/${singleData._id}`, {
-			method: 'PUT',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		})
+		fetch(
+			`https://neutron-ltd-server.vercel.app/contacts/${singleData._id}`,
+			{
+				method: 'PUT',
+				headers: {
+					'content-type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			}
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
@@ -31,19 +34,13 @@ const AddContacts = ({ singleData }) => {
 					reset();
 				}
 			});
-
-		// console.log(data);
 	};
-	// console.log(errors);
 
 	return (
-		<div className="flex justify-center items-center my-32 bg-amber-900/10">
-			<form
-				className="w-[500px] p-10 border"
-				onSubmit={handleSubmit(onSubmit)}
-			>
-				<h1 className="text-center text-[#0C4B65] text-4xl font-bold pb-10">
-					Add a Contact
+		<div className="flex justify-center items-center my-32 bg-[#61707D] shadow rounded-xl pb-12 z-90">
+			<form className="w-[500px] p-10 " onSubmit={handleSubmit(onSubmit)}>
+				<h1 className="text-center text-white text-4xl font-bold pb-10">
+					Update Contact Details
 				</h1>
 
 				<input
@@ -89,9 +86,9 @@ const AddContacts = ({ singleData }) => {
 				/>
 
 				<input
-					className="py-2 px-5 w-full text-white text-2xl duration-700 font-bold hover:text-[#0C4B65] hover:bg-[#EFCF4F] bg-[#0C4B65] mt-3 "
+					className="py-2 px-6 w-full text-white duration-700 font-semibold hover:text-[#0C4B65] hover:bg-[#EFCF4F] bg-[#0C4B65] mt-3 "
 					type="submit"
-					value="Add Class"
+					value="Update Contact"
 				/>
 			</form>
 		</div>

@@ -5,7 +5,7 @@ const AllContacts = () => {
 	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:5000/contacts')
+		fetch('https://neutron-ltd-server.vercel.app/contacts')
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);

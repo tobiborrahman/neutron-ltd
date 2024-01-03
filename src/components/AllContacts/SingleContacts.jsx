@@ -12,13 +12,16 @@ const SingleContacts = ({ singleData }) => {
 
 	const handleToggleFavorite = () => {
 		setIsFavorited(!isFavorited);
-		fetch(`http://localhost:5000/favorites/${singleData._id}`, {
-			method: 'POST',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify(singleData),
-		})
+		fetch(
+			`https://neutron-ltd-server.vercel.app/favorites/${singleData._id}`,
+			{
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json',
+				},
+				body: JSON.stringify(singleData),
+			}
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
@@ -26,7 +29,7 @@ const SingleContacts = ({ singleData }) => {
 					Swal.fire({
 						position: 'center',
 						icon: 'success',
-						title: `Contact added to the list`,
+						title: `Contact added to the favorite list`,
 						showConfirmButton: false,
 						timer: 1500,
 					});
@@ -43,13 +46,16 @@ const SingleContacts = ({ singleData }) => {
 	};
 
 	const handleUpdateSubmit = () => {
-		fetch(`http://localhost:5000/contacts/${singleData._id}`, {
-			method: 'PUT',
-			headers: {
-				'content-type': 'application/json',
-			},
-			body: JSON.stringify(singleData),
-		})
+		fetch(
+			`https://neutron-ltd-server.vercel.app/contacts/${singleData._id}`,
+			{
+				method: 'PUT',
+				headers: {
+					'content-type': 'application/json',
+				},
+				body: JSON.stringify(singleData),
+			}
+		)
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
@@ -58,7 +64,7 @@ const SingleContacts = ({ singleData }) => {
 	};
 
 	const handleDelete = (id) => {
-		fetch(`http://localhost:5000/contacts/${id}`, {
+		fetch(`https://neutron-ltd-server.vercel.app/contacts/${id}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())
@@ -68,7 +74,7 @@ const SingleContacts = ({ singleData }) => {
 					Swal.fire({
 						position: 'center',
 						icon: 'success',
-						title: `Contact added to the list`,
+						title: `Contact deleted successfully`,
 						showConfirmButton: false,
 						timer: 1500,
 					});
@@ -102,7 +108,7 @@ const SingleContacts = ({ singleData }) => {
 							{singleData.address}
 						</p>
 
-						<div className="flex pt-4 justify-center items-center gap-8">
+						<div className="flex pt-4 justify-center items-center relative gap-8">
 							<button
 								onClick={handleToggleFavorite}
 								className={`p-[12px] rounded-full ${
@@ -112,10 +118,37 @@ const SingleContacts = ({ singleData }) => {
 								{isFavorited ? <FaHeart /> : <FaRegHeart />}
 							</button>
 
-							<GrUpdate
-								onClick={handleUpdate}
-								className="w-10 h-10 p-[10px] bg-amber-500 text-white rounded-full"
-							/>
+							<div>
+								<GrUpdate
+									onClick={handleUpdate}
+									className="w-10 h-10 p-[10px] bg-amber-500 text-white rounded-full"
+								/>
+
+								{isUpdateModalOpen && (
+									<div className="absolute top-[-900%] left-[-35%] z-50">
+										<div className="">
+											<UpdateContacts
+												handleUpdateSubmit={
+													handleUpdateSubmit
+												}
+												singleData={singleData}
+											/>
+											<div className="-mt-[200px] mx-10">
+												<button
+													onClick={() =>
+														toggleModal(
+															!isUpdateModalOpen
+														)
+													}
+													className="py-2 px-6 text-white font-semibold bg-amber-500 w-full"
+												>
+													Cancel
+												</button>
+											</div>
+										</div>
+									</div>
+								)}
+							</div>
 
 							<RiDeleteBin6Line
 								onClick={() => handleDelete(_id)}
@@ -124,27 +157,6 @@ const SingleContacts = ({ singleData }) => {
 						</div>
 					</div>
 				</div>
-
-				{isUpdateModalOpen && (
-					<div className="absolute top-[50%] left-[30%] ">
-						<div className="">
-							<UpdateContacts
-								handleUpdateSubmit={handleUpdateSubmit}
-								singleData={singleData}
-							/>
-							<div className="-mt-[160px] mx-10">
-								<button
-									onClick={() =>
-										toggleModal(!isUpdateModalOpen)
-									}
-									className="py-2 px-6 bg-amber-500 w-full"
-								>
-									Cancel
-								</button>
-							</div>
-						</div>
-					</div>
-				)}
 			</section>
 		</>
 	);
