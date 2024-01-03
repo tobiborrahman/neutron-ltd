@@ -3,9 +3,10 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { GrUpdate } from 'react-icons/gr';
 import UpdateContacts from './UpdateContacts';
+import Swal from 'sweetalert2';
 
 const SingleContacts = ({ singleData }) => {
-	const { _id, name, address, email } = singleData;
+	const { _id } = singleData;
 	const [isFavorited, setIsFavorited] = useState(false);
 	const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
 
@@ -13,12 +14,16 @@ const SingleContacts = ({ singleData }) => {
 		setIsFavorited(!isFavorited);
 	};
 
+	const toggleModal = () => {
+		setUpdateModalOpen(!isUpdateModalOpen);
+	};
+
 	const handleUpdate = () => {
 		setUpdateModalOpen(true);
 	};
 
-	const handleUpdateSubmit = (_id) => {
-		fetch(`http://localhost:5000/contacts/${_id}`, {
+	const handleUpdateSubmit = () => {
+		fetch(`http://localhost:5000/contacts/${singleData._id}`, {
 			method: 'PUT',
 			headers: {
 				'content-type': 'application/json',
@@ -28,18 +33,28 @@ const SingleContacts = ({ singleData }) => {
 			.then((res) => res.json())
 			.then((data) => {
 				console.log(data);
-				setUpdateModalOpen(false);
 			})
 			.catch((error) => console.error('Error updating data:', error));
 	};
 
 	const handleDelete = (id) => {
-		console.log('delete', id);
 		fetch(`http://localhost:5000/contacts/${id}`, {
 			method: 'DELETE',
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data));
+			.then((data) => {
+				console.log(data);
+				if (data.deletedCount > 0) {
+					Swal.fire({
+						position: 'center',
+						icon: 'success',
+						title: `Contact added to the list`,
+						showConfirmButton: false,
+						timer: 1500,
+					});
+					reset();
+				}
+			});
 	};
 
 	return (
@@ -68,11 +83,6 @@ const SingleContacts = ({ singleData }) => {
 						</p>
 
 						<div className="flex pt-4 justify-center items-center gap-8">
-							{/* <FaRegHeart
-								data-tooltip-target="tooltip-default"
-								type="button"
-								className="w-10 h-10 p-[10px] bg-amber-500 text-white rounded-full"
-							/> */}
 							<button
 								onClick={handleToggleFavorite}
 								className={`w-10 h-10 p-[10px] rounded-full ${
@@ -94,14 +104,27 @@ const SingleContacts = ({ singleData }) => {
 						</div>
 					</div>
 				</div>
-				<UpdateContacts
-					isOpen={isUpdateModalOpen}
-					onClose={() => setUpdateModalOpen(false)}
-					onUpdate={(e, updatedData) =>
-						handleUpdateSubmit(e, updatedData)
-					}
-					initialData={singleData}
-				/>
+
+				{isUpdateModalOpen && (
+					<div className="absolute top-[50%] left-[30%] ">
+						<div className="">
+							<UpdateContacts
+								handleUpdateSubmit={handleUpdateSubmit}
+								singleData={singleData}
+							/>
+							<div className="-mt-[160px] mx-10">
+								<button
+									onClick={() =>
+										toggleModal(!isUpdateModalOpen)
+									}
+									className="py-2 px-6 bg-amber-500 w-full"
+								>
+									Cancel
+								</button>
+							</div>
+						</div>
+					</div>
+				)}
 			</section>
 		</>
 	);
