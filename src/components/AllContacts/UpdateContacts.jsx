@@ -9,6 +9,7 @@ const AddContacts = ({ singleData }) => {
 		reset,
 	} = useForm();
 
+	// Updating data modal
 	const onSubmit = (data) => {
 		fetch(
 			`https://neutron-ltd-server.vercel.app/contacts/${singleData._id}`,

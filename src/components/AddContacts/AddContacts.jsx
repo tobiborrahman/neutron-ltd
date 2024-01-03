@@ -10,6 +10,8 @@ const AddContacts = () => {
 		reset,
 	} = useForm();
 
+	// React hook form for data validation
+	// POST method to store data to database
 	const onSubmit = (data) => {
 		fetch('https://neutron-ltd-server.vercel.app/contacts', {
 			method: 'POST',

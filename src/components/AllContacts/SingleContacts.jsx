@@ -10,6 +10,7 @@ const SingleContacts = ({ singleData }) => {
 	const [isFavorited, setIsFavorited] = useState(false);
 	const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
 
+	// For adding the favorite contacts to the database
 	const handleToggleFavorite = () => {
 		setIsFavorited(!isFavorited);
 		fetch(
@@ -37,6 +38,8 @@ const SingleContacts = ({ singleData }) => {
 			});
 	};
 
+
+	// for opening modals
 	const toggleModal = () => {
 		setUpdateModalOpen(!isUpdateModalOpen);
 	};
@@ -45,6 +48,7 @@ const SingleContacts = ({ singleData }) => {
 		setUpdateModalOpen(true);
 	};
 
+	// Function for updating the contact by opening modal
 	const handleUpdateSubmit = () => {
 		fetch(
 			`https://neutron-ltd-server.vercel.app/contacts/${singleData._id}`,
@@ -63,6 +67,7 @@ const SingleContacts = ({ singleData }) => {
 			.catch((error) => console.error('Error updating data:', error));
 	};
 
+	// Deleting contact from the database
 	const handleDelete = (id) => {
 		fetch(`https://neutron-ltd-server.vercel.app/contacts/${id}`, {
 			method: 'DELETE',
@@ -109,6 +114,7 @@ const SingleContacts = ({ singleData }) => {
 						</p>
 
 						<div className="flex pt-4 justify-center items-center relative gap-8">
+
 							<button
 								onClick={handleToggleFavorite}
 								className={`p-[12px] rounded-full ${
@@ -121,11 +127,13 @@ const SingleContacts = ({ singleData }) => {
 							</button>
 
 							<div>
+								{/* handle update button */}
 								<GrUpdate
 									onClick={handleUpdate}
 									className="w-10 h-10 p-[10px] cursor-pointer bg-amber-500 hover:bg-amber-500/20 hover:text-amber-500 duration-300 text-white rounded-full"
 								/>
 
+								{/* Modal for updating data */}
 								{isUpdateModalOpen && (
 									<div className="absolute top-[-800%] md:top-[-900%] left[-1200%] md:left-[-35%] z-50">
 										<div className="">
@@ -152,6 +160,7 @@ const SingleContacts = ({ singleData }) => {
 								)}
 							</div>
 
+							{/* Card Delete button */}
 							<RiDeleteBin6Line
 								onClick={() => handleDelete(_id)}
 								className="w-10 h-10 p-[10px] cursor-pointer bg-amber-500 hover:bg-amber-500/20 hover:text-amber-500 duration-300 text-white rounded-full"
