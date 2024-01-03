@@ -14,7 +14,7 @@ const AllContacts = () => {
 	}, []);
 
 	return (
-		<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-8 gap-[30px] px-3 md:px-20 py-10 md:py-20">
+		<div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 pt-8 gap-[30px] px-3 md:px-20 py-10 md:py-20 bg-[#F9FAFB]">
 			{data.map((singleData) => (
 				<SingleContacts
 					key={singleData.id}

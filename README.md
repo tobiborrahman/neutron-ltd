@@ -1,6 +1,6 @@
-# This is the simple task assigned for evaluating for the position of the MERN stack developer. I will create this website very simply and I did not get enough time to design the website nicely.
+# A very simple website based on MongoDB CRUD operations. I have used MongoDB to store and retrieve documents. I have added POST, PUT, GET and DELETE methods to manage various operations on the documents. I have added very short description below.
 
-# features:
+# Features:
 
 -   The user can see the contacts as cards on the homepage.
 
@@ -21,7 +21,8 @@
 -   Express JS
 -   MongoDB
 
-# packages
+# Packages
 
 -   SweetAlert
 -   font-awesome icons
+-   React Hook Form

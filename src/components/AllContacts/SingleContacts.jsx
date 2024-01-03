@@ -112,7 +112,9 @@ const SingleContacts = ({ singleData }) => {
 							<button
 								onClick={handleToggleFavorite}
 								className={`p-[12px] rounded-full ${
-									isFavorited ? 'bg-red-500' : 'bg-amber-500'
+									isFavorited
+										? 'bg-red-500'
+										: 'bg-amber-500 hover:bg-amber-500/20 hover:text-amber-500 duration-300'
 								} text-white`}
 							>
 								{isFavorited ? <FaHeart /> : <FaRegHeart />}
@@ -121,7 +123,7 @@ const SingleContacts = ({ singleData }) => {
 							<div>
 								<GrUpdate
 									onClick={handleUpdate}
-									className="w-10 h-10 p-[10px] bg-amber-500 text-white rounded-full"
+									className="w-10 h-10 p-[10px] cursor-pointer bg-amber-500 hover:bg-amber-500/20 hover:text-amber-500 duration-300 text-white rounded-full"
 								/>
 
 								{isUpdateModalOpen && (
@@ -152,7 +154,7 @@ const SingleContacts = ({ singleData }) => {
 
 							<RiDeleteBin6Line
 								onClick={() => handleDelete(_id)}
-								className="w-10 h-10 p-[10px] bg-amber-500 text-white rounded-full"
+								className="w-10 h-10 p-[10px] cursor-pointer bg-amber-500 hover:bg-amber-500/20 hover:text-amber-500 duration-300 text-white rounded-full"
 							/>
 						</div>
 					</div>
