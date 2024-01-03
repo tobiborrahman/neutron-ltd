@@ -4,7 +4,6 @@ import './index.css';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './components/Home/Home.jsx';
-import HomePage from './components/HomePage/HomePage.jsx';
 import Login from './components/Login/Login.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
 import AllContacts from './components/AllContacts/AllContacts.jsx';
@@ -19,16 +18,13 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '/',
-				element: <HomePage />,
+				element: <AllContacts />,
 			},
 			{
 				path: '/login',
 				element: <Login />,
 			},
-			{
-				path: '/all-contacts',
-				element: <AllContacts />,
-			},
+
 			{
 				path: '/add-contacts',
 				element: <AddContacts />,

@@ -22,11 +22,11 @@ const Navbar = () => {
 			.catch((err) => console.log(err)),
 	];
 	return (
-		<div className="text-center md:flex md:items-center justify-between bg-[#0E1317] py-7 px-4 md:px-10">
+		<div className="text-center md:flex md:items-center justify-between bg-[#3B4751] py-7 px-4 md:px-10">
 			<div className="flex justify-between items-center mb-4 md:mb-0">
 				<h2 className="text-4xl text-white font-bold mr-4">
-					Chefs
-					<span className="text-orange-600 font-bold">World</span>
+					Neutron
+					<span className="text-orange-600 font-bold">LTD</span>
 				</h2>
 				<button
 					onClick={handleToggleMenu}
@@ -48,7 +48,7 @@ const Navbar = () => {
 							}
 							to="/"
 						>
-							Home
+							All Contacts
 						</Link>
 					</li>
 					<li className="text-2xl text-orange-600">
@@ -63,18 +63,7 @@ const Navbar = () => {
 							Add Contacts
 						</Link>
 					</li>
-					<li className="text-2xl text-orange-600">
-						<Link
-							className={
-								location.pathname === '/all-contacts'
-									? 'active'
-									: ''
-							}
-							to="/all-contacts"
-						>
-							All Contacts
-						</Link>
-					</li>
+
 					<li className="text-2xl md:hidden text-orange-600">
 						<Link
 							className={

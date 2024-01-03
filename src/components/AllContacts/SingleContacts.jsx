@@ -12,6 +12,26 @@ const SingleContacts = ({ singleData }) => {
 
 	const handleToggleFavorite = () => {
 		setIsFavorited(!isFavorited);
+		fetch(`http://localhost:5000/favorites/${singleData._id}`, {
+			method: 'POST',
+			headers: {
+				'content-type': 'application/json',
+			},
+			body: JSON.stringify(singleData),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				if (data.insertedId) {
+					Swal.fire({
+						position: 'center',
+						icon: 'success',
+						title: `Contact added to the list`,
+						showConfirmButton: false,
+						timer: 1500,
+					});
+				}
+			});
 	};
 
 	const toggleModal = () => {
@@ -85,7 +105,7 @@ const SingleContacts = ({ singleData }) => {
 						<div className="flex pt-4 justify-center items-center gap-8">
 							<button
 								onClick={handleToggleFavorite}
-								className={`w-10 h-10 p-[10px] rounded-full ${
+								className={`p-[12px] rounded-full ${
 									isFavorited ? 'bg-red-500' : 'bg-amber-500'
 								} text-white`}
 							>
