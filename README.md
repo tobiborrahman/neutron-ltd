@@ -23,6 +23,8 @@
 
 # Packages
 
+-   react-dom
+-   react-router-dom
 -   SweetAlert
 -   React icons
 -   React Hook Form
