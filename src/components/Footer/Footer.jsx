@@ -16,9 +16,10 @@ const Footer = () => {
 							taste buds.
 						</p>
 					</div>
-					<div className="w-full md:w-1/3 lg:w-1/4 mb-8 md:mb-0">
+					<div className="w-full md:w-1/3 lg:w-1/4 mb-8 ml-32 md:mb-0">
 						<img
-							src="https://neutron.com.bd/assets/images/neutron-logo.png"
+							className="w-20 h-20 rounded-lg"
+							src="/logo.png"
 							alt=""
 						/>
 					</div>

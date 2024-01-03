@@ -80,12 +80,12 @@ const Navbar = () => {
 				{user ? (
 					<button
 						onClick={handleLogOut}
-						className="py-3 px-4 md:px-7 text-1xl text-white font-bold bg-amber-500 mr-2 md:mr-6  duration-300"
+						className="py-3 px-4 md:px-7 text-1xl text-white font-bold bg-amber-500 hover:bg-amber-500/10 mr-2 md:mr-6  duration-300"
 					>
 						<Link to="/login">Log Out</Link>
 					</button>
 				) : (
-					<button className="py-3 px-4 md:px-7 text-1xl font-bold bg-amber-500  duration-300 mr-2 md:mr-6">
+					<button className="py-3 px-4 md:px-7 text-1xl font-semibold text-white bg-amber-500 hover:bg-amber-500/20 hover:border-amber-500 rounded-md hover:text-amber-500 duration-300 mr-2 md:mr-6">
 						<Link to="/login">Log In</Link>
 					</button>
 				)}

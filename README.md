@@ -1,4 +1,4 @@
-# A very simple website based on MongoDB CRUD operations. I have used MongoDB to store and retrieve documents. I have added POST, PUT, GET and DELETE methods to manage various operations on the documents. I have added very short description below.
+# A very simple website based on MongoDB CRUD operations. I have used MongoDB to store and retrieve documents. I have added POST, PUT, GET and DELETE methods to manage various operations on the documents.
 
 # Features:
 
@@ -24,5 +24,5 @@
 # Packages
 
 -   SweetAlert
--   font-awesome icons
+-   React icons
 -   React Hook Form
